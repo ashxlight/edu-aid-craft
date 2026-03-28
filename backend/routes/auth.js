@@ -10,7 +10,7 @@ import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-dotenv.config({ path: path.resolve(__dirname, '../../.env') });
+dotenv.config({ path: path.resolve(__dirname, '../.env') });
 
 const router = express.Router();
 
@@ -20,7 +20,11 @@ const generateToken = (id) => {
 };
 
 // --- Passport Google OAuth Setup ---
-if (process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET) {
+console.log('Registering Google Strategy...');
+if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
+  console.warn('WARNING: GOOGLE_CLIENT_ID or GOOGLE_CLIENT_SECRET not found in environment.');
+} else {
+  console.log('Google credentials found. Initializing strategy...');
   passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
@@ -28,6 +32,7 @@ if (process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET) {
   },
   async (accessToken, refreshToken, profile, done) => {
     try {
+      console.log('Google Profile received:', profile.emails[0].value);
       let user = await User.findOne({ email: profile.emails[0].value });
       if (!user) {
         user = await User.create({
@@ -38,16 +43,25 @@ if (process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET) {
       }
       return done(null, user);
     } catch (err) {
+      console.error('Error during Google authentication callback:', err);
       return done(err, null);
     }
   }));
+}
 
-  passport.serializeUser((user, done) => done(null, user.id));
-  passport.deserializeUser(async (id, done) => {
+passport.serializeUser((user, done) => {
+  console.log('Serializing user:', user.id);
+  done(null, user.id);
+});
+
+passport.deserializeUser(async (id, done) => {
+  try {
     const user = await User.findById(id);
     done(null, user);
-  });
-}
+  } catch (error) {
+    done(error, null);
+  }
+});
 
 // @route   POST /api/auth/register
 // @desc    Register a new user

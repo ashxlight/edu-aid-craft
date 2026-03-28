@@ -160,3 +160,37 @@ export const simplifyContent = async (text, disability, grade, language = 'en-IN
     throw new Error('Failed to generate adapted content');
   }
 };
+
+export const generateADHDWords = async (text) => {
+  const prompt = `Extract exactly 10 key educational words from the following text that a student should learn to pronounce. The words should be relevant to the topic.
+  Text: ${text}
+  Return ONLY a JSON object: { "words": ["word1", "word2", ...] }`;
+
+  try {
+    const chatCompletion = await groq.chat.completions.create({
+      messages: [{ role: 'user', content: prompt }],
+      model: 'llama-3.3-70b-versatile',
+      response_format: { type: "json_object" }
+    });
+    return JSON.parse(chatCompletion.choices[0].message.content);
+  } catch (error) {
+    return { words: ["Education", "Learning", "Knowledge", "Science", "History"] };
+  }
+};
+
+export const generateADHDSentences = async (text) => {
+  const prompt = `Create exactly 8 very short, punchy, and engaging sentences (max 5-7 words each) based on the following text. These are for a student with ADHD to read aloud.
+  Text: ${text}
+  Return ONLY a JSON object: { "sentences": ["sentence1", "sentence2", ...] }`;
+
+  try {
+    const chatCompletion = await groq.chat.completions.create({
+      messages: [{ role: 'user', content: prompt }],
+      model: 'llama-3.3-70b-versatile',
+      response_format: { type: "json_object" }
+    });
+    return JSON.parse(chatCompletion.choices[0].message.content);
+  } catch (error) {
+    return { sentences: ["Learning is super fun!", "Let's explore the world.", "You are doing great!"] };
+  }
+};

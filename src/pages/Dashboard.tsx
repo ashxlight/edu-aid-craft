@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { Upload, FileText, Sparkles, Clock, BarChart3, ArrowUpRight, BookOpen, User } from "lucide-react";
+import { Upload, FileText, Sparkles, Clock, BarChart3, ArrowUpRight, BookOpen, User, Gamepad2, Zap } from "lucide-react";
 import StepIndicator from "@/components/StepIndicator";
 import { useProcess } from "@/context/ProcessContext";
 import { useAuth } from "@/context/AuthContext";
@@ -234,7 +235,7 @@ export const StudentDashboard = ({ token }: { token: string | null }) => {
       });
       if (res.ok) {
         const doc = await res.json();
-        setData({ text: doc.content, file: null, documentTitle: title });
+        setData({ text: doc.content, file: null, documentTitle: title, documentId: id });
         navigate("/profile");
       }
     } catch(err) {

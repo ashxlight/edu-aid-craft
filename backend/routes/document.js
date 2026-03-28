@@ -1,6 +1,7 @@
 import express from 'express';
 import upload from '../middleware/upload.js';
 import { extractText } from '../services/fileService.js';
+import { generateADHDWords, generateADHDSentences } from '../services/aiService.js';
 import { protect } from './auth.js';
 import Document from '../models/Document.js';
 import History from '../models/History.js';
@@ -87,6 +88,32 @@ router.get('/:id', protect, async (req, res) => {
     res.json(doc);
   } catch (error) {
     res.status(500).json({ message: 'Error fetching document' });
+  }
+});
+
+// @route   GET /api/documents/adhd-words/:id
+// @desc    Get ADHD-friendly words from a document
+router.get('/adhd-words/:id', protect, async (req, res) => {
+  try {
+    const doc = await Document.findById(req.params.id);
+    if (!doc) return res.status(404).json({ message: 'Document not found' });
+    const data = await generateADHDWords(doc.content);
+    res.json(data);
+  } catch (error) {
+    res.status(500).json({ message: 'Error generating words' });
+  }
+});
+
+// @route   GET /api/documents/adhd-sentences/:id
+// @desc    Get ADHD-friendly sentences from a document
+router.get('/adhd-sentences/:id', protect, async (req, res) => {
+  try {
+    const doc = await Document.findById(req.params.id);
+    if (!doc) return res.status(404).json({ message: 'Document not found' });
+    const data = await generateADHDSentences(doc.content);
+    res.json(data);
+  } catch (error) {
+    res.status(500).json({ message: 'Error generating sentences' });
   }
 });
 

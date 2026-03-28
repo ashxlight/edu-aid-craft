@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 40 33% 97%;
+    --foreground: 220 20% 15%;
+
+    --card: 40 20% 95%;
+    --card-foreground: 220 20% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 20% 15%;
+
+    --primary: 174 40% 35%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 40 20% 92%;
+    --secondary-foreground: 220 20% 15%;
+
+    --muted: 40 15% 92%;
+    --muted-foreground: 220 10% 45%;
+
+    --accent: 38 90% 55%;
+    --accent-foreground: 220 20% 15%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 40 15% 88%;
+    --input: 40 15% 88%;
+    --ring: 174 40% 35%;
+
+    --radius: 0.75rem;
+
+    --teal: 174 40% 35%;
+    --teal-light: 174 30% 92%;
+    --teal-dark: 174 45% 25%;
+    --orange: 38 90% 55%;
+    --orange-light: 38 80% 92%;
+    --cream: 40 33% 97%;
+    --cream-dark: 40 20% 92%;
+
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 220 20% 15%;
+    --sidebar-primary: 174 40% 35%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 174 30% 94%;
+    --sidebar-accent-foreground: 174 40% 30%;
+    --sidebar-border: 40 15% 90%;
+    --sidebar-ring: 174 40% 35%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'DM Sans', system-ui, sans-serif;
+  }
+  h1, h2, h3 {
+    font-family: 'DM Serif Display', Georgia, serif;
+  }
+  h4, h5, h6 {
+    font-family: 'DM Sans', system-ui, sans-serif;
+    @apply font-bold;
+  }
+}
+
+@layer components {
+  .heading-underline {
+    position: relative;
+    display: inline;
+  }
+  .heading-underline::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 2px;
+    width: 100%;
+    height: 8px;
+    background: hsl(var(--orange));
+    border-radius: 4px;
+    z-index: -1;
+    opacity: 0.6;
+  }
+  .teal-card {
+    background: hsl(var(--teal));
+    color: white;
+    border-radius: 1.5rem;
+  }
+  .decorative-star {
+    color: hsl(var(--orange));
+  }
+}
+
+@keyframes ken-burns {
+  0% {
+    transform: scale(1) translate(0, 0);
+  }
+  50% {
+    transform: scale(1.15) translate(-2%, -2%);
+  }
+  100% {
+    transform: scale(1) translate(0, 0);
+  }
+}
+
+.animate-ken-burns {
+  animation: ken-burns 15s ease-in-out infinite;
+}
+

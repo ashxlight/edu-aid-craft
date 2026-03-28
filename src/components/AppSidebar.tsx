@@ -1,4 +1,4 @@
-import { LayoutDashboard, Clock, Settings, LogOut, Sparkles, BookOpen } from "lucide-react";
+import { LayoutDashboard, Clock, Settings, LogOut, Sparkles, BookOpen, Gamepad2 } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
 import { useLocation, useNavigate } from "react-router-dom";
 import {
