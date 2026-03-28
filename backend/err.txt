@@ -1,0 +1,10 @@
+{
+  "message": "Sarvam API failure",
+  "error": {
+    "error": {
+      "message": "Speaker 'meera' is not recognized. Available speakers are: anushka, abhilash, manisha, vidya, arya, karun, hitesh, aditya, ritu, priya, neha, rahul, pooja, rohan, simran, kavya, amit, dev, ishita, shreya, ratan, varun, manan, sumit, roopa, kabir, aayan, shubh, ashutosh, advait, amelia, sophia, anand, tanya, tarun, sunny, mani, gokul, vijay, shruti, suhani, mohit, kavitha, rehan, soham, rupali",
+      "code": "invalid_request_error",
+      "request_id": "20260327_d9f38a09-c0a0-47f5-aa9e-4551aaabeff0"
+    }
+  }
+}

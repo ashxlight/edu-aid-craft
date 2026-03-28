@@ -1,0 +1,4 @@
+Error: Groq API Error: 429 {"error":{"message":"Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01keq23fkje1y9hc52hkbpb4yb` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99697, Requested 935. Please try again in 9m6.048s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing","type":"tokens","code":"rate_limit_exceeded"}}
+    at simplifyContent (file:///E:/FLUX/edu-aid-craft/backend/services/aiService.js:164:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///E:/FLUX/edu-aid-craft/backend/routes/content.js:34:87

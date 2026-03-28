@@ -1,0 +1,10 @@
+{
+  "message": "Sarvam API failure",
+  "error": {
+    "error": {
+      "message": "Validation Error(s):\n- model: Input should be 'bulbul:v2', 'bulbul:v3-beta' or 'bulbul:v3'",
+      "code": "invalid_request_error",
+      "request_id": "20260327_29e1c542-ae88-4317-b85e-e147956e9110"
+    }
+  }
+}

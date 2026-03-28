@@ -1,0 +1,10 @@
+{
+  "message": "Sarvam API failure",
+  "error": {
+    "error": {
+      "message": "Speaker 'arya' is not compatible with model bulbul:v3. Available speakers for bulbul:v3 are: aditya, ritu, ashutosh, priya, neha, rahul, pooja, rohan, simran, kavya, amit, dev, ishita, shreya, ratan, varun, manan, sumit, roopa, kabir, aayan, shubh, advait, amelia, sophia, anand, tanya, tarun, sunny, mani, gokul, vijay, shruti, suhani, mohit, kavitha, rehan, soham, rupali, niharika",
+      "code": "invalid_request_error",
+      "request_id": "20260327_2f40e43b-f3dc-4e98-8c11-be262bb885e7"
+    }
+  }
+}

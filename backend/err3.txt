@@ -1,0 +1,10 @@
+{
+  "message": "Sarvam API failure",
+  "error": {
+    "error": {
+      "message": "Pitch and loudness parameters are currently not supported for the Bulbul V3 model. Please do not pass these values.",
+      "code": "invalid_request_error",
+      "request_id": "20260327_009d697a-955b-4174-9e06-8a3822af493a"
+    }
+  }
+}
